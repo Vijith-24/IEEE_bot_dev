@@ -13,9 +13,17 @@ client.on('ready' , () => {
     console.log('Bot is online')
 })
 
-client.on("message" , msg => {
-    if(msg.content === 'hello') {
-      msg.reply("Hello World")
+client.on("messageCreate" , msg => {
+    let data=msg.content.split(' ');
+    if(data[0] === '/help') {
+        if(!data[1]||!data[2]||!data[3])
+        {
+            msg.reply('format: /help id location name');
+        }
+        else
+        {
+            msg.reply(`${data[3]} with id ${data[1]} asked for help at ${data[2]}`);
+        }
     }
   })
 
